@@ -1,6 +1,6 @@
 const textarea=document.querySelector("textarea");
 const button=document.querySelector("button");
-let isnotSpeaking=true;
+let isSpeaking=true;
 
 const textToSpeech=()=>{
     const synth=window.speechSynthesis;
@@ -11,24 +11,24 @@ const textToSpeech=()=>{
     synth.speak(utternace);
  }
  if(text.length>50){
-    if(synth.speaking && isnotSpeaking){
+    if(synth.speaking && isSpeaking){
         button.innerHTML="Pause";
         synth.resume();
-        isnotSpeaking=false;
+        isSpeaking=false;
     }else{
         button.innerHTML="Resume";
         synth.pause();
-        isnotSpeaking=true;
+        isSpeaking=true;
     }
     
  }else{
-   isnotSpeaking=false;
+   isSpeaking=false;
     button.innerHTML="Speaking";
  }
 
  setInterval(()=>{
-    if(!synth.speaking && !isnotSpeaking){
-      isnotSpeaking=true;
+    if(!synth.speaking && !isSpeaking){
+      isSpeaking=true;
         button.innerHTML="Convert to Speech";
     }
  })
